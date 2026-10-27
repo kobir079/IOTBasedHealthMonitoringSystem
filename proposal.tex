@@ -1,0 +1,211 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+\graphicspath{{diagrams/}}
+
+\title{\textbf{IoT Based Health Monitoring System (IHMS)}\\[4pt]
+\large Final Capstone Project -- Part I: Proposal and Prototyping}
+\author{Student Name: MD. Kobir Hosen \\ Student ID: IT24030 \\[6pt] Supervised by: Dr. Ziaur Rahman, \\ Professor, Dept. of ICT, MBSTU}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------
+\section{Introduction}
+Regular monitoring of vital signs is important for elderly people, patients with chronic diseases and people living far from hospitals. In most cases the measurements are taken manually and only during a hospital visit, so dangerous changes can go unnoticed. The \textbf{IoT Based Health Monitoring System (IHMS)} uses a wearable sensor node built with an ESP32 microcontroller, a heart rate and SpO\textsubscript{2} sensor (MAX30102) and a temperature sensor (DS18B20) to measure vital signs continuously and send them to a server. The server checks each reading, raises an alert when a value is abnormal and informs the patient and the assigned doctor immediately.
+
+\section{Problem Statement}
+\begin{itemize}[noitemsep]
+  \item Vital signs are measured only occasionally, so sudden changes are missed.
+  \item Doctors cannot see a patient's recent readings without a visit.
+  \item Patients and families are not warned quickly when readings become dangerous.
+  \item There is no central history of readings, alerts and prescriptions.
+\end{itemize}
+
+\section{Objectives}
+\begin{enumerate}[noitemsep]
+  \item Measure heart rate, body temperature and SpO\textsubscript{2} with an IoT sensor node and send them to the server.
+  \item Store every reading and show the latest values and history to the patient and doctor.
+  \item Compare readings with personal health limits and generate Medium, High or Critical alerts automatically.
+  \item Notify the patient and the doctor on every alert, acknowledgement and prescription.
+  \item Let the doctor review alerts and write prescriptions, and let the admin manage devices, limits and reports.
+\end{enumerate}
+
+\section{Scope}
+\textbf{In scope:} user login, device registration, sensor data collection, health limits, automatic alerts, notifications, doctor review and prescription, reports.\\
+\textbf{Out of scope (first release):} ECG measurement, video consultation, SMS gateway, machine-learning based disease prediction.
+
+\section{Stakeholders and Users}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Role} & \textbf{Description}\\
+\midrule
+Patient & Wears the device, views vitals, alerts and prescriptions\\
+Doctor & Reviews alerts of assigned patients, writes prescriptions\\
+Admin & Registers devices, assigns doctors, sets health limits, views reports\\
+IoT Device & Sensor node that measures and sends the readings\\
+\bottomrule
+\end{tabular}
+
+\section{Requirements}
+\subsection{Functional Requirements}
+\begin{enumerate}[noitemsep]
+  \item[FR1] Users can log in and log out with role-based access.
+  \item[FR2] The admin can register a device to a patient and assign a doctor.
+  \item[FR3] The device sends heart rate, temperature and SpO\textsubscript{2} readings to the server.
+  \item[FR4] The system validates and stores every reading with its time.
+  \item[FR5] The patient can view the latest reading and the history of readings.
+  \item[FR6] The system compares each reading with the patient's health limits and creates an alert (Medium, High or Critical) when needed.
+  \item[FR7] The system notifies the patient and the doctor when an alert is created.
+  \item[FR8] The doctor can view open alerts, acknowledge and resolve them.
+  \item[FR9] The doctor can write a prescription (medicine and advice) for an assigned patient.
+  \item[FR10] The admin can change the health limits and generate reports.
+\end{enumerate}
+
+\subsection{Non-Functional Requirements}
+\begin{tabular}{@{}lp{11cm}@{}}
+\toprule
+\textbf{Attribute} & \textbf{Requirement}\\
+\midrule
+Reliability & No more than 5\% of readings lost; device retries if the network is down\\
+Performance & An alert reaches the doctor within 10 seconds of an abnormal reading\\
+Security & Passwords hashed; encrypted communication (HTTPS / MQTT over TLS); role-based access\\
+Privacy & Medical data is visible only to the patient, the assigned doctor and the admin\\
+Usability & The dashboard is simple enough for elderly users\\
+Power & The wearable runs at least 24 hours on one battery charge\\
+Maintainability & Modular, object-oriented code with documentation\\
+\bottomrule
+\end{tabular}
+
+\section{Proposed Hardware and Technology Stack}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Layer} & \textbf{Technology}\\
+\midrule
+Microcontroller & ESP32 (built-in Wi-Fi)\\
+Sensors & MAX30102 (heart rate and SpO\textsubscript{2}), DS18B20 (temperature)\\
+Communication & MQTT or HTTP REST over Wi-Fi\\
+Backend & Java (Spring Boot) or Python (Flask)\\
+Database & MySQL\\
+Frontend & HTML, CSS, JavaScript (Bootstrap) dashboard\\
+Simulation & Wokwi / Tinkercad\\
+Version control & Git and GitHub\\
+Design tools & PlantUML, Overleaf\\
+\bottomrule
+\end{tabular}
+
+\section{Software Process Model: Agile (Scrum)}
+Agile Scrum was chosen because hardware and software can be built and tested in small steps, requirements may change after sensor testing, and working increments (first the sensor node, then the server, then the dashboard) can be shown at the end of every sprint.
+
+\begin{itemize}[noitemsep]
+  \item Sprint length: 2 weeks; total duration: 12 weeks.
+  \item Product backlog is built from the functional requirements.
+  \item Each sprint ends with a demo, a review and a retrospective.
+\end{itemize}
+
+\section{Project Schedule}
+\begin{longtable}{@{}llll@{}}
+\toprule
+\textbf{Sprint} & \textbf{Weeks} & \textbf{Activities} & \textbf{Output}\\
+\midrule
+\endhead
+0 & 1--2 & Proposal, planning, requirement analysis & Proposal, SRS\\
+1 & 3--4 & Circuit, system and database design; component purchase & UML diagrams, ERD, circuit diagram\\
+2 & 5--6 & Sensor node and ESP32 firmware & Device sends readings\\
+3 & 7--8 & Server, database and MQTT/REST API & Readings stored\\
+4 & 9--10 & Dashboard, alert module, doctor review and prescription & Full workflow\\
+5 & 11--12 & Integration testing, sensor calibration, deployment, documentation & Final system, report\\
+\bottomrule
+\end{longtable}
+
+\subsection{Gantt Chart}
+The Gantt chart is in \texttt{diagrams/gantt.puml} (rendered image \texttt{gantt.png}).
+\begin{figure}[H]
+\centering
+\IfFileExists{diagrams/gantt.png}{\includegraphics[width=\textwidth]{gantt.png}}{\fbox{\parbox{0.9\textwidth}{\centering Render \texttt{diagrams/gantt.puml} to \texttt{gantt.png}}}}
+\caption{Project Gantt chart}
+\end{figure}
+
+\section{Milestones}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{ID} & \textbf{Milestone} & \textbf{Week}\\
+\midrule
+M1 & Proposal approved & 1\\
+M2 & Design complete (diagrams and circuit) & 4\\
+M3 & Sensor node working and sending data & 6\\
+M4 & Beta release (alerts, doctor review, prescriptions) & 10\\
+M5 & Final delivery & 12\\
+\bottomrule
+\end{tabular}
+
+\section{Deliverables}
+\begin{enumerate}[noitemsep]
+  \item Project proposal (this document)
+  \item Software Requirement Specification (SRS)
+  \item UML diagrams (DFD, use case, activity, ERD, class, object)
+  \item Circuit diagram and bill of materials
+  \item ESP32 firmware source code
+  \item Server, database scripts and web dashboard source code
+  \item Working prototype
+  \item Test plan and test report
+  \item User manual and final project report
+\end{enumerate}
+
+\section{Risk Analysis}
+\begin{tabular}{@{}p{4.5cm}p{2cm}p{7cm}@{}}
+\toprule
+\textbf{Risk} & \textbf{Level} & \textbf{Mitigation}\\
+\midrule
+Inaccurate sensor readings & High & Calibrate against a medical device; filter noisy values\\
+Wi-Fi or server failure & Medium & Device buffers readings and resends later\\
+Hardware delay or damage & Medium & Order spare parts early; test first in a simulator\\
+Privacy of medical data & High & Encryption, access control, minimal data stored\\
+Time shortage & High & Build core features first (reading, alert, notification)\\
+\bottomrule
+\end{tabular}
+
+\section{UML Diagrams}
+All diagrams are PlantUML source files in the \texttt{diagrams/} folder. Their rendered images are shown below.
+
+\newcommand{\diagram}[3]{%
+\subsection{#1}
+\begin{figure}[H]
+\centering
+\IfFileExists{diagrams/#2.png}{\includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{#2.png}}{\fbox{\parbox{0.9\textwidth}{\centering Render \texttt{diagrams/#2.puml} to \texttt{#2.png}}}}
+\caption{#3}
+\end{figure}}
+
+\diagram{Data Flow Diagram (Level 0)}{dfd_level0}{DFD Level 0 (context diagram)}
+\diagram{Data Flow Diagram (Level 1)}{dfd_level1}{DFD Level 1}
+\diagram{Use Case Diagram}{usecase}{Use case diagram}
+\diagram{Activity Diagram}{activity}{Activity diagram: from sensor reading to doctor review}
+\diagram{Entity Relationship Diagram}{erd}{Entity relationship diagram}
+\diagram{Class Diagram}{class}{Class diagram}
+\diagram{Object Diagram}{object}{Object diagram (sample snapshot)}
+
+\section{Prototype}
+A console prototype written in Java is provided in the \texttt{prototype/} folder. It implements the following ten classes from the class diagram, each in its own file: \texttt{User}, \texttt{Patient}, \texttt{Doctor}, \texttt{Admin}, \texttt{Device}, \texttt{SensorReading}, \texttt{HealthThreshold}, \texttt{Alert}, \texttt{Prescription} and \texttt{Notification}. The interface itself is in \texttt{Main.java}. The wearable device is simulated: the user types the heart rate, temperature and SpO\textsubscript{2} that the sensor node would send.
+
+\begin{lstlisting}[language=bash,basicstyle=\ttfamily\small]
+cd prototype
+javac *.java
+java Main          # interactive menu
+java Main --demo   # automatic demo
+\end{lstlisting}
+
+The interface has four menus (Patient, IoT Device, Doctor, Admin) that cover sending readings, automatic alerts, doctor review, prescriptions, health limits and reports.
+
+\section{Conclusion}
+IHMS will allow continuous and remote monitoring of vital signs and give doctors and families a quick warning when something is wrong. This proposal defines the problem, requirements, schedule, design and a working prototype that will be extended with the real ESP32 sensor node and web dashboard in the next phase.
+
+\end{document}
