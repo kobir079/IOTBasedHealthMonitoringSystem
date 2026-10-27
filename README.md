@@ -2,6 +2,8 @@ Name:Md.Kobir Hosen
 ID:IT24030
 
 #Project Name: IOTBasedHealthMonitoringSystem
+
+#Proposal Link:https://github.com/kobir079/IOTBasedHealthMonitoringSystem/blob/main/SEPM_Project_Proposal.pdf
 <img width="1554" height="1206" alt="activity" src="https://github.com/user-attachments/assets/8041c620-1bf7-42bb-8816-fb68b8ebba98" />
 <img width="1703" height="1403" alt="class" src="https://github.com/user-attachments/assets/58757f25-1e4f-49cf-ab77-36b39ffb2fc1" />
 <img width="818" height="248" alt="dfd_level0" src="https://github.com/user-attachments/assets/ded4071b-044b-473c-83ed-f565c7345066" />
